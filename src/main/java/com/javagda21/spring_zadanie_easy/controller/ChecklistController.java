@@ -4,6 +4,7 @@ import com.javagda21.spring_zadanie_easy.modele.Checklist;
 import com.javagda21.spring_zadanie_easy.service.ChecklistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,5 +32,11 @@ public class ChecklistController {
             checklistService.addChecklist(checklist);
             return "redirect:/index";
         }
+    }
+
+    @GetMapping("/checklist/list")
+    public String getChecklistList(Model model) {
+        model.addAttribute("checklistList",checklistService.getChecklists());
+        return "checklistListPage" ;
     }
 }

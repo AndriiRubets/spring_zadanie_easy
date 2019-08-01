@@ -35,6 +35,43 @@
     </div>
 </nav>
 
+<div class="container">
+    <h1>Checklist Table</h1>
+    <div class="row col-lg-10 table-responsive">
+        <table id="checklistTable" class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Date of Created</th>
+                <th>Date of Completed</th>
+                <th>Completed or not?</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="checklist, rowStat: ${checklistList}"
+                th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
+                <td th:text="${checklist.id}"></td>
+                <td th:text="${checklist.name}"></td>
+                <td th:text="${checklist.dateCreated}"></td>
+                <td th:text="${checklist.dateCompleted}"></td>
+                <td>
+                    <span th:text="${checklist.isArchived()} ? 'Completed' : 'No complited'"></span>
+                </td>
+                <td>
+                    <a th:href="@{'/checklist/modify?checklistId='+${checklist.getId()}}">Modify Checklist</a>
+                </td>
+                <td>
+                    <a th:href="@{'/checklist/remove?checklistId='+${checklist.getId()}}">Remove Checklist</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
