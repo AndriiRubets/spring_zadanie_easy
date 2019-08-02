@@ -25,7 +25,7 @@ public class ChecklistController {
 
     @PostMapping("/checklist/add")
     public String postChecklistForm(@RequestParam(name = "nameChecklist") String name) {
-        Checklist checklist = new Checklist(null, name, null, null, false, new ArrayList<>());
+        Checklist checklist = new Checklist(null, name, null, null, true, new ArrayList<>());
         if (name.isEmpty()) {
             return "redirect:/checklist/add";
         } else {
@@ -39,4 +39,11 @@ public class ChecklistController {
         model.addAttribute("checklistList",checklistService.getChecklists());
         return "checklistListPage" ;
     }
+
+    @GetMapping("/checklist/archivedList")
+    public String getArchivedChecklistList(Model model) {
+        model.addAttribute("archivedChecklistList",checklistService.getChecklists());
+        return "checklistArchivedListPage" ;
+    }
+
 }

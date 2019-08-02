@@ -53,7 +53,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="checklist, rowStat: ${checklistList}"
+            <tr th:each="checklist, rowStat: ${archivedChecklistList}" th:if="${checklist.isArchived()}"
                 th:style="${rowStat.odd} ? 'color: gray' : 'color: blue;'">
                 <td th:text="${checklist.id}"></td>
                 <td th:text="${checklist.name}"></td>
